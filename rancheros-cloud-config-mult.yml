@@ -1,0 +1,47 @@
+#cloud-config
+
+# /var/lib/rancher/conf/cloud-config.d/nfs.yml
+
+# https://github.com/rancher/os/issues/641
+write_files:
+  - path: /etc/rc.local
+    permissions: "0755"
+    content: |
+      #!/bin/bash
+      [ ! -e /usr/bin/docker ] && ln -s /usr/bin/docker.dist /usr/bin/docker
+
+rancher:
+  services:
+    nfs-docker:
+      image: walkerk1980/rancher-nfs-client
+      labels:
+        io.rancher.os.after: console, preload-user-images
+        io.rancher.os.scope: system
+      net: host
+      privileged: true
+      restart: always
+      volumes:
+      - /usr/bin/iptables:/sbin/iptables:ro
+      - /mnt/nfs-docker:/mnt/nfs-docker:shared
+      environment:
+        SERVER: x.x.x.x
+        SHARE: /mnt/primary/docker
+        MOUNTPOINT: /mnt/nfs-docker
+        FSTYPE: nfs4
+
+    nfs-books:
+      image: walkerk1980/rancher-nfs-client
+      labels:
+        io.rancher.os.after: console, preload-user-images
+        io.rancher.os.scope: system
+      net: host
+      privileged: true
+      restart: always
+      volumes:
+      - /usr/bin/iptables:/sbin/iptables:ro
+      - /mnt/nfs-books:/mnt/nfs-books:shared
+      environment:
+        SERVER: x.x.x.x
+        SHARE: /mnt/primary/media/Books
+        MOUNTPOINT: /mnt/nfs-books
+        FSTYPE: nfs4
