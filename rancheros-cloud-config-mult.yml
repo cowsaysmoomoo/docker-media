@@ -12,7 +12,7 @@ write_files:
 
 rancher:
   services:
-    nfs-docker:
+    nfs-Val:
       image: walkerk1980/rancher-nfs-client
       labels:
         io.rancher.os.after: console, preload-user-images
@@ -22,14 +22,13 @@ rancher:
       restart: always
       volumes:
       - /usr/bin/iptables:/sbin/iptables:ro
-      - /mnt/nfs-docker:/mnt/nfs-docker:shared
+      - /mnt/nfs-Val:/mnt/nfs-Val:shared
       environment:
-        SERVER: x.x.x.x
-        SHARE: /mnt/primary/docker
-        MOUNTPOINT: /mnt/nfs-docker
-        FSTYPE: nfs4
+        SERVER: 192.168.1.186
+        SHARE: /mnt/Valhalla/Media
+        MOUNTPOINT: /mnt/nfs-Val
 
-    nfs-books:
+    nfs-Imp:
       image: walkerk1980/rancher-nfs-client
       labels:
         io.rancher.os.after: console, preload-user-images
@@ -39,9 +38,8 @@ rancher:
       restart: always
       volumes:
       - /usr/bin/iptables:/sbin/iptables:ro
-      - /mnt/nfs-books:/mnt/nfs-books:shared
+      - /mnt/nfs-Imp:/mnt/nfs-Imp:shared
       environment:
-        SERVER: x.x.x.x
-        SHARE: /mnt/primary/media/Books
-        MOUNTPOINT: /mnt/nfs-books
-        FSTYPE: nfs4
+        SERVER: 192.168.1.186
+        SHARE: /mnt/Improbability/Media
+        MOUNTPOINT: /mnt/nfs-Imp
