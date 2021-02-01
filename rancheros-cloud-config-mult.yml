@@ -12,7 +12,7 @@ write_files:
 
 rancher:
   services:
-    nfs-Val:
+    nfs-movies:
       image: walkerk1980/rancher-nfs-client
       labels:
         io.rancher.os.after: console, preload-user-images
@@ -22,13 +22,13 @@ rancher:
       restart: always
       volumes:
       - /usr/bin/iptables:/sbin/iptables:ro
-      - /mnt/nfs-Val:/mnt/nfs-Val:shared
+      - /mnt/nfs-movies:/mnt/nfs-movies:shared
       environment:
         SERVER: 192.168.1.186
-        SHARE: /mnt/Valhalla/Media
-        MOUNTPOINT: /mnt/nfs-Val
+        SHARE: /mnt/Valhalla/Media/Movies
+        MOUNTPOINT: /mnt/nfs-movies
 
-    nfs-Imp:
+    nfs-tv:
       image: walkerk1980/rancher-nfs-client
       labels:
         io.rancher.os.after: console, preload-user-images
@@ -38,8 +38,24 @@ rancher:
       restart: always
       volumes:
       - /usr/bin/iptables:/sbin/iptables:ro
-      - /mnt/nfs-Imp:/mnt/nfs-Imp:shared
+      - /mnt/nfs-tv:/mnt/nfs-tv:shared
       environment:
         SERVER: 192.168.1.186
-        SHARE: /mnt/Improbability/Media
-        MOUNTPOINT: /mnt/nfs-Imp
+        SHARE: /mnt/Improbability/Media/tv
+        MOUNTPOINT: /mnt/nfs-tv
+
+    nfs-anime:
+      image: walkerk1980/rancher-nfs-client
+      labels:
+        io.rancher.os.after: console, preload-user-images
+        io.rancher.os.scope: system
+      net: host
+      privileged: true
+      restart: always
+      volumes:
+      - /usr/bin/iptables:/sbin/iptables:ro
+      - /mnt/nfs-anime:/mnt/nfs-anime:shared
+      environment:
+        SERVER: 192.168.1.186
+        SHARE: /mnt/Improbability/Media/Anime
+        MOUNTPOINT: /mnt/nfs-anime
