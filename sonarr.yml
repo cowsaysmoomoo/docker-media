@@ -5,12 +5,12 @@ rancher:
       container_name: sonarr
       restart: always
       environment:
-        PGID: 1020
+        PGID: 972
         PUID: 1020
         TZ: America/Chicago
       ports:
       - 8989:8989
       volumes:
-      - /mnt/nfs-1/config/sonarr:/config
+      - /mnt/docker-config/sonarr:/config
       - /mnt/nfs-1/TV:/data/tv
       - /mnt/nfs-1/Downloads:/data/downloads
