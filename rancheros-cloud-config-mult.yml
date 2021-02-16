@@ -75,3 +75,19 @@ rancher:
         SERVER: 192.168.1.186
         SHARE: /mnt/Valhalla/Media/Comics
         MOUNTPOINT: /mnt/nfs-comics
+
+    nfs-torrents:
+      image: walkerk1980/rancher-nfs-client
+      labels:
+        io.rancher.os.after: console, preload-user-images
+        io.rancher.os.scope: system
+      net: host
+      privileged: true
+      restart: always
+      volumes:
+      - /usr/bin/iptables:/sbin/iptables:ro
+      - /mnt/nfs-torrents:/mnt/nfs-torrents:shared
+      environment:
+        SERVER: 192.168.1.186
+        SHARE: /mnt/Improbability/Media
+        MOUNTPOINT: /mnt/nfs-torrents
