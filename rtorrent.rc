@@ -50,7 +50,7 @@ session.path.set = /config/rtorrent/session/
 # Watch a directory for new torrents, and stop those that have been
 # deleted.
 #
-schedule2 = watch_directory,5,5,load.start=./data/watch/*.torrent
+schedule2 = watch_directory,5,5,load.start=/data/watch/*.torrent
 schedule2 = untied_directory,5,5,stop_untied=
 
 # Close torrents when diskspace is low.
