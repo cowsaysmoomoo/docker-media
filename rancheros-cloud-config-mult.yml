@@ -24,7 +24,7 @@ rancher:
       - /usr/bin/iptables:/sbin/iptables:ro
       - /mnt/nfs-movies:/mnt/nfs-movies:shared
       environment:
-        SERVER: 192.168.1.186
+        SERVER: 192.168.1.185
         SHARE: /mnt/Valhalla/Media/Movies
         MOUNTPOINT: /mnt/nfs-movies
 
@@ -40,7 +40,7 @@ rancher:
       - /usr/bin/iptables:/sbin/iptables:ro
       - /mnt/nfs-tv:/mnt/nfs-tv:shared
       environment:
-        SERVER: 192.168.1.186
+        SERVER: 192.168.1.185
         SHARE: /mnt/Improbability/Media/tv
         MOUNTPOINT: /mnt/nfs-tv
 
@@ -56,7 +56,7 @@ rancher:
       - /usr/bin/iptables:/sbin/iptables:ro
       - /mnt/nfs-anime:/mnt/nfs-anime:shared
       environment:
-        SERVER: 192.168.1.186
+        SERVER: 192.168.1.185
         SHARE: /mnt/Improbability/Media/Anime
         MOUNTPOINT: /mnt/nfs-anime
 
@@ -72,7 +72,7 @@ rancher:
       - /usr/bin/iptables:/sbin/iptables:ro
       - /mnt/nfs-comics:/mnt/nfs-comics:shared
       environment:
-        SERVER: 192.168.1.186
+        SERVER: 192.168.1.185
         SHARE: /mnt/Valhalla/Media/Comics
         MOUNTPOINT: /mnt/nfs-comics
 
@@ -88,6 +88,6 @@ rancher:
       - /usr/bin/iptables:/sbin/iptables:ro
       - /mnt/nfs-torrents:/mnt/nfs-torrents:shared
       environment:
-        SERVER: 192.168.1.186
+        SERVER: 192.168.1.185
         SHARE: /mnt/Improbability/Media
         MOUNTPOINT: /mnt/nfs-torrents
